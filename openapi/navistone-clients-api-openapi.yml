@@ -1,0 +1,271 @@
+openapi: 3.0.0
+info:
+  title: Zazmic Platform API Info Clients API
+  description: API for managing clients, domains, campaigns, segments, and geo-targeting
+  version: 1.0.0
+  contact: {}
+servers: []
+tags:
+- name: Clients
+  description: Client management
+paths:
+  /api/clients:
+    post:
+      operationId: ClientsController_create
+      summary: Create a new client
+      description: Creates a new SMB client account
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClientDto'
+      responses:
+        '201':
+          description: Client created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientResponseDto'
+        '400':
+          description: Bad Request - Invalid input data
+        '401':
+          description: Unauthorized - Invalid or missing API key
+        '500':
+          description: Internal server error
+      tags:
+      - Clients
+      security:
+      - api-key: []
+    get:
+      operationId: ClientsController_findAll
+      summary: Get all clients
+      description: Retrieves all SMB client accounts with pagination and filtering
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: 'Page number (default: 1)'
+        schema:
+          minimum: 1
+          default: 1
+          example: 1
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: 'Items per page (default: 10, max: 100)'
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: number
+      - name: name
+        required: false
+        in: query
+        description: Filter by name (partial match)
+        schema:
+          example: Acme
+          type: string
+      - name: active
+        required: false
+        in: query
+        description: Filter by active status
+        schema:
+          example: true
+          type: boolean
+      responses:
+        '200':
+          description: Paginated list of clients
+        '401':
+          description: Unauthorized - Invalid or missing API key
+        '500':
+          description: Internal server error
+      tags:
+      - Clients
+      security:
+      - api-key: []
+  /api/clients/{id}:
+    get:
+      operationId: ClientsController_findOne
+      summary: Get client by ID
+      description: Retrieves a single client account by ID
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Client UUID
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Client details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientResponseDto'
+        '401':
+          description: Unauthorized - Invalid or missing API key
+        '404':
+          description: Not Found - Resource does not exist
+        '500':
+          description: Internal server error
+      tags:
+      - Clients
+      security:
+      - api-key: []
+    patch:
+      operationId: ClientsController_update
+      summary: Update client
+      description: Updates an existing client account (partial update)
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Client UUID
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateClientDto'
+      responses:
+        '200':
+          description: Client updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientResponseDto'
+        '400':
+          description: Bad Request - Invalid input data
+        '401':
+          description: Unauthorized - Invalid or missing API key
+        '404':
+          description: Not Found - Resource does not exist
+        '500':
+          description: Internal server error
+      tags:
+      - Clients
+      security:
+      - api-key: []
+    delete:
+      operationId: ClientsController_remove
+      summary: Disable client
+      description: Disables a client account (soft delete by setting active=false). Matches legacy API behavior.
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Client UUID
+        schema:
+          format: uuid
+          type: string
+      - name: force
+        required: false
+        in: query
+        description: Force deletion even with dependent records
+        schema:
+          type: boolean
+      responses:
+        '204':
+          description: No Content - Resource deleted successfully
+        '401':
+          description: Unauthorized - Invalid or missing API key
+        '404':
+          description: Not Found - Resource does not exist
+        '500':
+          description: Internal server error
+      tags:
+      - Clients
+      security:
+      - api-key: []
+components:
+  schemas:
+    ClientResponseDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Client unique identifier
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type: string
+          description: Client/company name
+          example: Acme Corporation
+        email:
+          type: object
+          description: Contact email address
+          example: contact@acme.com
+          nullable: true
+        lookupKey:
+          type: object
+          description: Lookup key for external integrations
+          example: acme-corp
+          nullable: true
+        createdAt:
+          format: date-time
+          type: string
+          description: Creation timestamp
+          example: '2025-01-01T00:00:00.000Z'
+        updatedAt:
+          type: object
+          description: Last update timestamp
+          example: '2025-01-15T10:30:00.000Z'
+          nullable: true
+      required:
+      - id
+      - name
+      - email
+      - lookupKey
+      - createdAt
+      - updatedAt
+    CreateClientDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Client/company name
+          example: Acme Corporation
+          maxLength: 255
+        email:
+          type: string
+          description: Contact email address
+          example: contact@acme.com
+          maxLength: 255
+        lookupKey:
+          type: string
+          description: Lookup key for client identification
+          example: acme-corp
+          maxLength: 255
+      required:
+      - name
+    UpdateClientDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Client/company name
+          example: Acme Corporation
+          maxLength: 255
+        email:
+          type: string
+          description: Contact email address
+          example: contact@acme.com
+          maxLength: 255
+        lookupKey:
+          type: string
+          description: Lookup key for client identification
+          example: acme-corp
+          maxLength: 255
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API Key for authentication

@@ -1,0 +1,162 @@
+openapi: 3.0.0
+info:
+  title: Zazmic Platform API Info Segments API
+  description: API for managing clients, domains, campaigns, segments, and geo-targeting
+  version: 1.0.0
+  contact: {}
+servers: []
+tags:
+- name: Segments
+  description: Audience segments
+paths:
+  /api/segments:
+    post:
+      operationId: SegmentsController_create
+      summary: Create a new segment
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSegmentDto'
+      responses:
+        '201':
+          description: Segment created successfully
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+      tags:
+      - Segments
+      security:
+      - api-key: []
+    get:
+      operationId: SegmentsController_findAll
+      summary: Get all segments
+      parameters: []
+      responses:
+        '200':
+          description: List of all segments
+        '401':
+          description: Unauthorized
+      tags:
+      - Segments
+      security:
+      - api-key: []
+  /api/segments/{id}:
+    get:
+      operationId: SegmentsController_findOne
+      summary: Get a segment by ID
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Segment ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      responses:
+        '200':
+          description: Segment found
+        '401':
+          description: Unauthorized
+        '404':
+          description: Segment not found
+      tags:
+      - Segments
+      security:
+      - api-key: []
+    patch:
+      operationId: SegmentsController_update
+      summary: Update a segment
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Segment ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSegmentDto'
+      responses:
+        '200':
+          description: Segment updated successfully
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+        '404':
+          description: Segment not found
+      tags:
+      - Segments
+      security:
+      - api-key: []
+    delete:
+      operationId: SegmentsController_remove
+      summary: Soft delete a segment
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Segment ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      responses:
+        '200':
+          description: Segment deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Segment not found
+      tags:
+      - Segments
+      security:
+      - api-key: []
+components:
+  schemas:
+    UpdateSegmentDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Segment name
+          example: High Value Customers
+        description:
+          type: string
+          description: Segment description
+          example: Customers with lifetime value over $1000
+        domainId:
+          type: string
+          description: Domain ID this segment belongs to
+          example: 123e4567-e89b-12d3-a456-426614174000
+    CreateSegmentDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Segment name
+          example: High Value Customers
+        description:
+          type: string
+          description: Segment description
+          example: Customers with lifetime value over $1000
+        domainId:
+          type: string
+          description: Domain ID this segment belongs to
+          example: 123e4567-e89b-12d3-a456-426614174000
+      required:
+      - name
+      - domainId
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API Key for authentication

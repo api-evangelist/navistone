@@ -1,0 +1,179 @@
+openapi: 3.0.0
+info:
+  title: Zazmic Platform API Info Output API
+  description: API for managing clients, domains, campaigns, segments, and geo-targeting
+  version: 1.0.0
+  contact: {}
+servers: []
+tags:
+- name: Output
+  description: Output tracking
+paths:
+  /api/output:
+    post:
+      operationId: OutputController_create
+      summary: Create output record
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOutputDto'
+      responses:
+        '201':
+          description: Output created successfully
+      tags:
+      - Output
+      security:
+      - api-key: []
+    get:
+      operationId: OutputController_findAll
+      summary: Get all output records
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Limit results
+        schema:
+          type: number
+      responses:
+        '200':
+          description: List of output records
+      tags:
+      - Output
+      security:
+      - api-key: []
+  /api/output/campaign/{campaignId}:
+    get:
+      operationId: OutputController_findByCampaign
+      summary: Get output by campaign ID
+      parameters:
+      - name: campaignId
+        required: true
+        in: path
+        description: Campaign UUID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Campaign output records
+      tags:
+      - Output
+      security:
+      - api-key: []
+  /api/output/{id}:
+    get:
+      operationId: OutputController_findOne
+      summary: Get output by ID
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Output ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Output details
+      tags:
+      - Output
+      security:
+      - api-key: []
+    patch:
+      operationId: OutputController_update
+      summary: Update output record
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Output ID
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOutputDto'
+      responses:
+        '200':
+          description: Output updated successfully
+      tags:
+      - Output
+      security:
+      - api-key: []
+    delete:
+      operationId: OutputController_remove
+      summary: Delete output record
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Output ID
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Output deleted successfully
+      tags:
+      - Output
+      security:
+      - api-key: []
+components:
+  schemas:
+    CreateOutputDto:
+      type: object
+      properties:
+        campaignId:
+          type: string
+          description: Campaign ID
+        productTypeId:
+          type: number
+          description: Product type ID
+        dateStamp:
+          type: string
+          description: Date stamp
+        total:
+          type: number
+          description: Total output
+        monthly:
+          type: number
+          description: Monthly output
+        dailyAvg:
+          type: number
+          description: Daily average
+      required:
+      - campaignId
+      - productTypeId
+      - dateStamp
+      - total
+      - monthly
+      - dailyAvg
+    UpdateOutputDto:
+      type: object
+      properties:
+        campaignId:
+          type: string
+          description: Campaign ID
+        productTypeId:
+          type: number
+          description: Product type ID
+        dateStamp:
+          type: string
+          description: Date stamp
+        total:
+          type: number
+          description: Total output
+        monthly:
+          type: number
+          description: Monthly output
+        dailyAvg:
+          type: number
+          description: Daily average
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API Key for authentication

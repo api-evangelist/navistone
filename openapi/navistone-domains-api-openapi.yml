@@ -1,0 +1,154 @@
+openapi: 3.0.0
+info:
+  title: Zazmic Platform API Info Domains API
+  description: API for managing clients, domains, campaigns, segments, and geo-targeting
+  version: 1.0.0
+  contact: {}
+servers: []
+tags:
+- name: Domains
+  description: Domain management
+paths:
+  /api/domains:
+    post:
+      operationId: DomainsController_create
+      summary: Create a new domain with access key
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDomainDto'
+      responses:
+        '201':
+          description: Domain created successfully
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+      tags:
+      - Domains
+      security:
+      - api-key: []
+    get:
+      operationId: DomainsController_findAll
+      summary: Get all domains
+      parameters: []
+      responses:
+        '200':
+          description: List of all domains
+        '401':
+          description: Unauthorized
+      tags:
+      - Domains
+      security:
+      - api-key: []
+  /api/domains/{id}:
+    get:
+      operationId: DomainsController_findOne
+      summary: Get a domain by ID
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Domain ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      responses:
+        '200':
+          description: Domain found
+        '401':
+          description: Unauthorized
+        '404':
+          description: Domain not found
+      tags:
+      - Domains
+      security:
+      - api-key: []
+    patch:
+      operationId: DomainsController_update
+      summary: Update a domain
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Domain ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDomainDto'
+      responses:
+        '200':
+          description: Domain updated successfully
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+        '404':
+          description: Domain not found
+      tags:
+      - Domains
+      security:
+      - api-key: []
+    delete:
+      operationId: DomainsController_remove
+      summary: Soft delete a domain
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Domain ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      responses:
+        '200':
+          description: Domain deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Domain not found
+      tags:
+      - Domains
+      security:
+      - api-key: []
+components:
+  schemas:
+    UpdateDomainDto:
+      type: object
+      properties:
+        domainName:
+          type: string
+          description: Domain name
+          example: example.com
+        clientId:
+          type: string
+          description: Client ID
+          example: 123e4567-e89b-12d3-a456-426614174000
+    CreateDomainDto:
+      type: object
+      properties:
+        domainName:
+          type: string
+          description: Domain name
+          example: example.com
+        clientId:
+          type: string
+          description: Client ID
+          example: 123e4567-e89b-12d3-a456-426614174000
+      required:
+      - domainName
+      - clientId
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API Key for authentication

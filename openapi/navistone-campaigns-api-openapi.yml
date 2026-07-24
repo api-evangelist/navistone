@@ -1,0 +1,163 @@
+openapi: 3.0.0
+info:
+  title: Zazmic Platform API Info Campaigns API
+  description: API for managing clients, domains, campaigns, segments, and geo-targeting
+  version: 1.0.0
+  contact: {}
+servers: []
+tags:
+- name: Campaigns
+  description: Campaign management
+paths:
+  /api/campaigns:
+    post:
+      operationId: CampaignsController_create
+      summary: Create a new campaign with Creative ID
+      description: Links to Modern Postcard Creative ID - NO file uploads supported
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCampaignDto'
+      responses:
+        '201':
+          description: Resource created successfully
+        '400':
+          description: Validation failed
+        '401':
+          description: Invalid or missing API key
+      tags:
+      - Campaigns
+      security:
+      - api-key: []
+    get:
+      operationId: CampaignsController_findAll
+      summary: Get all campaigns
+      parameters: []
+      responses:
+        '200':
+          description: List of all campaigns
+        '401':
+          description: Invalid or missing API key
+      tags:
+      - Campaigns
+      security:
+      - api-key: []
+  /api/campaigns/{id}:
+    get:
+      operationId: CampaignsController_findOne
+      summary: Get a campaign by ID
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Campaign ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      responses:
+        '200':
+          description: Campaign found
+        '401':
+          description: Invalid or missing API key
+        '404':
+          description: Resource not found
+      tags:
+      - Campaigns
+      security:
+      - api-key: []
+    patch:
+      operationId: CampaignsController_update
+      summary: Update a campaign
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Campaign ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCampaignDto'
+      responses:
+        '200':
+          description: Resource updated successfully
+        '400':
+          description: Validation failed
+        '401':
+          description: Invalid or missing API key
+        '404':
+          description: Resource not found
+      tags:
+      - Campaigns
+      security:
+      - api-key: []
+    delete:
+      operationId: CampaignsController_remove
+      summary: Soft delete a campaign
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Campaign ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '401':
+          description: Invalid or missing API key
+        '404':
+          description: Resource not found
+      tags:
+      - Campaigns
+      security:
+      - api-key: []
+components:
+  schemas:
+    CreateCampaignDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Campaign name
+          example: Summer Sale 2025
+        clientId:
+          type: string
+          description: Client ID
+          example: 123e4567-e89b-12d3-a456-426614174000
+        creativeId:
+          type: string
+          description: Modern Postcard Creative ID (NO file uploads!)
+          example: MP-12345
+      required:
+      - name
+      - clientId
+    UpdateCampaignDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Campaign name
+          example: Summer Sale 2025
+        clientId:
+          type: string
+          description: Client ID
+          example: 123e4567-e89b-12d3-a456-426614174000
+        creativeId:
+          type: string
+          description: Modern Postcard Creative ID (NO file uploads!)
+          example: MP-12345
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API Key for authentication

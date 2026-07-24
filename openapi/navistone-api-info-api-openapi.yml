@@ -1,0 +1,28 @@
+openapi: 3.0.0
+info:
+  title: Zazmic Platform API Info API
+  description: API for managing clients, domains, campaigns, segments, and geo-targeting
+  version: 1.0.0
+  contact: {}
+servers: []
+tags:
+- name: API Info
+  description: API information and endpoints
+paths:
+  /api:
+    get:
+      operationId: AppController_getApiInfo
+      summary: Get API information and available endpoints
+      parameters: []
+      responses:
+        '200':
+          description: API information returned
+      tags:
+      - API Info
+components:
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API Key for authentication

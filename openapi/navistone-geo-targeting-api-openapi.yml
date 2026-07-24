@@ -1,0 +1,201 @@
+openapi: 3.0.0
+info:
+  title: Zazmic Platform API Info Geo Targeting API
+  description: API for managing clients, domains, campaigns, segments, and geo-targeting
+  version: 1.0.0
+  contact: {}
+servers: []
+tags:
+- name: Geo Targeting
+  description: Geographic targeting
+paths:
+  /api/geo-targeting/campaigns/{campaignId}:
+    post:
+      operationId: GeoTargetingController_create
+      summary: Add geo targeting to campaign
+      description: Add zip code or state-based targeting. Either zip OR state must be provided, not both. If zip is provided, optional radius in miles can be specified.
+      parameters:
+      - name: campaignId
+        required: true
+        in: path
+        description: Campaign ID
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGeoTargetingDto'
+      responses:
+        '201':
+          description: Geo targeting added
+        '400':
+          description: Invalid input - both zip and state provided
+        '401':
+          description: Unauthorized
+      tags:
+      - Geo Targeting
+      security:
+      - api-key: []
+    get:
+      operationId: GeoTargetingController_list
+      summary: List all geo targeting for campaign
+      parameters:
+      - name: campaignId
+        required: true
+        in: path
+        description: Campaign ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Geo targeting list retrieved
+        '401':
+          description: Unauthorized
+      tags:
+      - Geo Targeting
+      security:
+      - api-key: []
+  /api/geo-targeting/campaigns/{campaignId}/zip/{zipCode}:
+    post:
+      operationId: GeoTargetingController_addZip
+      summary: Add ZIP code targeting to campaign
+      description: Quick endpoint to add a single ZIP code without radius
+      parameters:
+      - name: campaignId
+        required: true
+        in: path
+        description: Campaign ID
+        schema:
+          type: string
+      - name: zipCode
+        required: true
+        in: path
+        description: 5-digit ZIP code
+        schema:
+          type: string
+      responses:
+        '201':
+          description: ZIP targeting added
+        '401':
+          description: Unauthorized
+      tags:
+      - Geo Targeting
+      security:
+      - api-key: []
+    delete:
+      operationId: GeoTargetingController_removeZip
+      summary: Remove ZIP code targeting from campaign
+      parameters:
+      - name: campaignId
+        required: true
+        in: path
+        description: Campaign ID
+        schema:
+          type: string
+      - name: zipCode
+        required: true
+        in: path
+        description: 5-digit ZIP code
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ZIP targeting removed
+        '401':
+          description: Unauthorized
+      tags:
+      - Geo Targeting
+      security:
+      - api-key: []
+  /api/geo-targeting/campaigns/{campaignId}/state/{stateCode}:
+    post:
+      operationId: GeoTargetingController_addState
+      summary: Add state targeting to campaign
+      parameters:
+      - name: campaignId
+        required: true
+        in: path
+        description: Campaign ID
+        schema:
+          type: string
+      - name: stateCode
+        required: true
+        in: path
+        description: State code (e.g., CA, NY)
+        schema:
+          type: string
+      responses:
+        '201':
+          description: State targeting added
+        '401':
+          description: Unauthorized
+      tags:
+      - Geo Targeting
+      security:
+      - api-key: []
+    delete:
+      operationId: GeoTargetingController_removeState
+      summary: Remove state targeting from campaign
+      parameters:
+      - name: campaignId
+        required: true
+        in: path
+        description: Campaign ID
+        schema:
+          type: string
+      - name: stateCode
+        required: true
+        in: path
+        description: State code (e.g., CA, NY)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: State targeting removed
+        '401':
+          description: Unauthorized
+      tags:
+      - Geo Targeting
+      security:
+      - api-key: []
+components:
+  schemas:
+    CreateGeoTargetingDto:
+      type: object
+      properties:
+        campaignId:
+          type: string
+          description: Campaign ID
+          example: 123e4567-e89b-12d3-a456-426614174000
+        zip:
+          type: string
+          description: ZIP code for targeting (5-digit US postal code). Cannot be used with stateCode.
+          example: '90210'
+        radius:
+          type: number
+          description: Radius in miles around the zip code center. Requires zip to be set.
+          example: 25
+        stateCode:
+          type: string
+          description: State code (2 letters, e.g., CA, NY). Cannot be used with zip.
+          example: CA
+        suppress:
+          type: boolean
+          description: Whether to suppress (exclude) this geo area. False means include only this area. Default is false.
+          example: false
+          default: false
+        creativeId:
+          type: number
+          description: Creative ID to associate with this geo targeting (Modern Postcard Creative ID)
+          example: 12345
+      required:
+      - campaignId
+      - suppress
+  securitySchemes:
+    api-key:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API Key for authentication

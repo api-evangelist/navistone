@@ -1,0 +1,9 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/navistone-openapi-original.json
+workflows:
+- file: navistone-campaign-launch.yml
+  workflowId: launchCampaign
+  title: NaviStone campaign launch
+  summary: Create a client, create a direct-mail campaign for a Modern Postcard creative,
+    add ZIP geo-targeting, and read output.

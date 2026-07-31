@@ -1,7 +1,30 @@
 aid: navistone
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/navistone.png
 name: NaviStone
-description: NaviStone is a company surfaced as a portfolio company of bullpen-capital and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  NaviStone is a direct-mail marketing technology company that turns first-party
+  and "unknown" website audiences into addressable postcard campaigns for consumer
+  brands. Its platform helps businesses prospect (lookalike audiences), retain
+  (mailing customers who opt out of digital channels), and retarget (postcards that
+  amplify campaign performance), claiming up to a 70% increase in return on marketing
+  spend. NaviStone's platform API (implemented on the Zazmic platform and published
+  at docs.navistone.com) manages clients, website domains, audience segments,
+  campaigns tied to Modern Postcard creative IDs, ZIP-code and state geo-targeting,
+  and output tracking, all secured with an X-API-Key header. NaviStone is backed by
+  Bullpen Capital and works with brands including Sleep Number, Vitamix, and Hey Dude
+  across retail, travel, beauty, apparel, and home services.
 url: https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,15 +34,148 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Marketing
+- Direct Mail
+- Advertising
+- Customer Acquisition
+- Audience Targeting
+- MarTech
+- AdTech
+- Postcards
+- Retargeting
+apis:
+- aid: navistone:navistone-api-info-api
+  name: NaviStone API Info API
+  description: API information and endpoints
+  humanURL: https://docs.navistone.com
+  baseURL: https://docs.navistone.com
+  tags:
+  - API Info
+  properties:
+  - type: OpenAPI
+    url: openapi/navistone-api-info-api-openapi.yml
+- aid: navistone:navistone-campaigns-api
+  name: NaviStone Campaigns API
+  description: Campaign management
+  humanURL: https://docs.navistone.com
+  baseURL: https://docs.navistone.com
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/navistone-campaigns-api-openapi.yml
+- aid: navistone:navistone-clients-api
+  name: NaviStone Clients API
+  description: Client management
+  humanURL: https://docs.navistone.com
+  baseURL: https://docs.navistone.com
+  tags:
+  - Clients
+  properties:
+  - type: OpenAPI
+    url: openapi/navistone-clients-api-openapi.yml
+- aid: navistone:navistone-domains-api
+  name: NaviStone Domains API
+  description: Domain management
+  humanURL: https://docs.navistone.com
+  baseURL: https://docs.navistone.com
+  tags:
+  - Domains
+  properties:
+  - type: OpenAPI
+    url: openapi/navistone-domains-api-openapi.yml
+- aid: navistone:navistone-geo-targeting-api
+  name: NaviStone Geo Targeting API
+  description: Geographic targeting
+  humanURL: https://docs.navistone.com
+  baseURL: https://docs.navistone.com
+  tags:
+  - Geo Targeting
+  properties:
+  - type: OpenAPI
+    url: openapi/navistone-geo-targeting-api-openapi.yml
+- aid: navistone:navistone-health-api
+  name: NaviStone Health API
+  description: Health checks
+  humanURL: https://docs.navistone.com
+  baseURL: https://docs.navistone.com
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/navistone-health-api-openapi.yml
+- aid: navistone:navistone-output-api
+  name: NaviStone Output API
+  description: Output tracking
+  humanURL: https://docs.navistone.com
+  baseURL: https://docs.navistone.com
+  tags:
+  - Output
+  properties:
+  - type: OpenAPI
+    url: openapi/navistone-output-api-openapi.yml
+- aid: navistone:navistone-segments-api
+  name: NaviStone Segments API
+  description: Audience segments
+  humanURL: https://docs.navistone.com
+  baseURL: https://docs.navistone.com
+  tags:
+  - Segments
+  properties:
+  - type: OpenAPI
+    url: openapi/navistone-segments-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/navistone-agentic-access.yml
 - type: Website
   url: https://www.navistone.com
+- type: DeveloperPortal
+  url: https://docs.navistone.com
+- type: Documentation
+  url: https://docs.navistone.com
+- type: APIReference
+  url: https://docs.navistone.com
+- type: Blog
+  url: https://www.navistone.com/blog
+- type: SignUp
+  url: https://www.navistone.com/get-started
+- type: PrivacyPolicy
+  url: https://www.navistone.com/privacy-policy
+- type: Authentication
+  url: authentication/navistone-authentication.yml
+- type: DomainSecurity
+  url: security/navistone-domain-security.yml
+- type: Conventions
+  url: conventions/navistone-conventions.yml
+- type: ErrorCatalog
+  url: errors/navistone-problem-types.yml
+- type: DataModel
+  url: data-model/navistone-data-model.yml
+- type: Conformance
+  url: conformance/navistone-conformance.yml
+- type: Lifecycle
+  url: lifecycle/navistone-lifecycle.yml
+- type: MCPServer
+  url: mcp/navistone-mcp.yml
+- type: Overlay
+  url: overlays/navistone-openapi-overlay.yaml
+- type: LLMsTxt
+  url: llms/navistone-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Arazzo
+  name: NaviStone campaign launch
+  url: arazzo/navistone-campaign-launch.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 1
+  pass: local-v1

@@ -1,0 +1,28 @@
+# NaviStone
+
+> NaviStone is a direct-mail marketing technology company that turns first-party and "unknown" website audiences into addressable postcard campaigns for consumer brands. Its platform API manages clients, domains, audience segments, campaigns (linked to Modern Postcard creative), ZIP/state geo-targeting, and output tracking, secured with an X-API-Key header.
+
+## APIs
+
+- [NaviStone Platform API (Swagger UI)](https://docs.navistone.com): Interactive API reference for the NaviStone (Zazmic) Platform API.
+- [OpenAPI (JSON)](https://docs.navistone.com/openapi.json): Machine-readable OpenAPI 3.0.0 definition.
+
+## Specs
+
+- [OpenAPI original](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/openapi/navistone-openapi-original.json)
+
+## Artifacts
+
+- [Authentication profile](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/authentication/navistone-authentication.yml)
+- [API conventions](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/conventions/navistone-conventions.yml)
+- [Error catalog](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/errors/navistone-problem-types.yml)
+- [Data model](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/data-model/navistone-data-model.yml)
+- [Conformance](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/conformance/navistone-conformance.yml)
+- [MCP tool surface (candidate)](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/mcp/navistone-mcp.yml)
+
+## Docs
+
+- [NaviStone website](https://www.navistone.com)
+- [Blog](https://www.navistone.com/blog)
+- [Get started](https://www.navistone.com/get-started)
+- [Privacy policy](https://www.navistone.com/privacy-policy)

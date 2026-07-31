@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/navistone-openapi-original.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: api-key
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  description: API Key for authentication
+  sources:
+  - openapi/navistone-openapi-original.json

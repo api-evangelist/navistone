@@ -1,0 +1,49 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/navistone-openapi-original.json
+summary: >-
+  Cross-cutting request/response semantics for the NaviStone (Zazmic) Platform API,
+  derived from the published OpenAPI. REST/CRUD over JSON, API-key auth, offset
+  pagination on list endpoints. No idempotency-key contract and no rate-limit
+  signaling are documented.
+authentication:
+  style: api-key
+  location: header
+  parameter: X-API-Key
+  cross_ref: authentication/navistone-authentication.yml
+base_path:
+  prefix: /api
+  note: All resource paths are served under the /api prefix (e.g. /api/campaigns).
+idempotency:
+  supported: false
+  note: The API documents no Idempotency-Key header or idempotent-retry contract.
+pagination:
+  style: offset
+  params:
+  - name: page
+    default: 1
+    minimum: 1
+  - name: limit
+    default: 10
+    minimum: 1
+    maximum: 100
+  applies_to:
+  - openapi/navistone-openapi-original.json#ClientsController_findAll
+  filtering:
+  - name
+  - active
+metadata:
+  soft_delete: true
+  note: Deletes are soft (active=false) for clients/campaigns/domains/segments; a
+    force query flag exists on client delete for dependent records.
+error_envelope:
+  style: http-status + json body
+  format: plain
+  cross_ref: errors/navistone-problem-types.yml
+versioning:
+  scheme: none-explicit
+  spec_version: 1.0.0
+  cross_ref: lifecycle/navistone-lifecycle.yml
+rate_limiting:
+  signaled: false
+  note: No rate-limit headers or policy are documented.

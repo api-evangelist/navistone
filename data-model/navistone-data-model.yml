@@ -1,0 +1,64 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/navistone-openapi-original.json
+entities:
+- name: Client
+  description: An SMB client / advertiser account.
+  key: id (uuid)
+  fields: [id, name, email, lookupKey, createdAt, updatedAt]
+- name: Domain
+  description: A website domain owned by a client (carries an access key).
+  fields: [id, domainName, clientId]
+- name: Campaign
+  description: A direct-mail campaign linked to a Modern Postcard Creative ID (no file uploads).
+  fields: [id, name, clientId, creativeId]
+- name: Segment
+  description: An audience segment belonging to a domain.
+  fields: [id, name, description, domainId]
+- name: GeoTargeting
+  description: ZIP-code or state geographic targeting attached to a campaign.
+  fields: [id, campaignId, zip, radius, stateCode, suppress, creativeId]
+- name: Output
+  description: Output/production tracking records for a campaign.
+  fields: [id, campaignId, productTypeId, dateStamp, total, monthly, dailyAvg]
+relationships:
+- from: Domain
+  to: Client
+  type: belongs_to
+  via: clientId
+- from: Campaign
+  to: Client
+  type: belongs_to
+  via: clientId
+- from: Segment
+  to: Domain
+  type: belongs_to
+  via: domainId
+- from: GeoTargeting
+  to: Campaign
+  type: belongs_to
+  via: campaignId
+- from: Output
+  to: Campaign
+  type: belongs_to
+  via: campaignId
+- from: Client
+  to: Campaign
+  type: has_many
+  via: clientId
+- from: Client
+  to: Domain
+  type: has_many
+  via: clientId
+- from: Domain
+  to: Segment
+  type: has_many
+  via: domainId
+- from: Campaign
+  to: GeoTargeting
+  type: has_many
+  via: campaignId
+- from: Campaign
+  to: Output
+  type: has_many
+  via: campaignId

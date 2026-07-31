@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/navistone-openapi-original.json
+standards:
+- id: rest-crud
+  conforms: true
+  evidence: resource-oriented paths with GET/POST/PATCH/DELETE CRUD semantics
+- id: apikey-auth
+  conforms: true
+  evidence: securityScheme type apiKey in header (X-API-Key)
+- id: offset-pagination
+  conforms: true
+  evidence: page/limit query params on the clients list endpoint
+- id: oauth2
+  conforms: false
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: error responses do not advertise application/problem+json
+- id: idempotency
+  conforms: false
+- id: json-api
+  conforms: false
+- id: health-check
+  conforms: true
+  evidence: /api/health, /api/health/live, /api/health/ready liveness/readiness probes

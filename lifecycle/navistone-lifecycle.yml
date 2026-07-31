@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/navistone-openapi-original.json
+versioning:
+  scheme: none-explicit
+  spec_version: 1.0.0
+  note: The OpenAPI declares version 1.0.0; paths are served under /api with no
+    version segment.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No deprecation/Sunset policy is documented.
+sla:
+  url: null
+status_page: null
+health_endpoints:
+- openapi/navistone-openapi-original.json#HealthController_check
+- openapi/navistone-openapi-original.json#HealthController_liveness
+- openapi/navistone-openapi-original.json#HealthController_readiness
+deprecated_operations: []

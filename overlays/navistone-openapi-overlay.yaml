@@ -1,0 +1,18 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for NaviStone (Zazmic) Platform API
+  version: 1.0.0
+extends: openapi/navistone-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: navistone
+    x-apievangelist-notes: >-
+      NaviStone direct-mail marketing platform API (implemented on the Zazmic
+      platform). Manages clients, domains, audience segments, campaigns tied to
+      Modern Postcard creative, ZIP/state geo-targeting, and output tracking.
+      Authenticated with an X-API-Key header.
+- target: $.servers
+  update:
+  - url: https://docs.navistone.com
+    description: Host serving the published OpenAPI / Swagger UI (API paths under /api).

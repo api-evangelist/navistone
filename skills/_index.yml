@@ -1,0 +1,13 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/navistone-openapi-original.json
+skills:
+- file: navistone-launch-campaign.md
+  name: Launch a NaviStone direct-mail campaign
+  api: openapi/navistone-openapi-original.json
+  operations:
+  - ClientsController_create
+  - CampaignsController_create
+  - GeoTargetingController_create
+  - GeoTargetingController_addZip
+  - OutputController_findByCampaign

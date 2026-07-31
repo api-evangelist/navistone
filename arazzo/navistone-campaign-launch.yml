@@ -1,0 +1,58 @@
+arazzo: 1.0.1
+info:
+  title: NaviStone campaign launch
+  version: 1.0.0
+  summary: Onboard a client, create a direct-mail campaign, add ZIP geo-targeting, and read output.
+sourceDescriptions:
+- name: navistone
+  url: ../openapi/navistone-openapi-original.json
+  type: openapi
+workflows:
+- workflowId: launchCampaign
+  summary: Create a client, create a campaign for a Modern Postcard creative, geo-target a ZIP, and fetch output.
+  inputs:
+    type: object
+    properties:
+      clientName:
+        type: string
+      creativeId:
+        type: string
+      zipCode:
+        type: string
+    required: [clientName, creativeId, zipCode]
+  steps:
+  - stepId: createClient
+    operationId: ClientsController_create
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.clientName
+    outputs:
+      clientId: $response.body#/id
+  - stepId: createCampaign
+    operationId: CampaignsController_create
+    requestBody:
+      contentType: application/json
+      payload:
+        name: Launch campaign
+        clientId: $steps.createClient.outputs.clientId
+        creativeId: $inputs.creativeId
+    outputs:
+      campaignId: $response.body#/id
+  - stepId: addZipTargeting
+    operationId: GeoTargetingController_addZip
+    parameters:
+    - name: campaignId
+      in: path
+      value: $steps.createCampaign.outputs.campaignId
+    - name: zipCode
+      in: path
+      value: $inputs.zipCode
+  - stepId: getOutput
+    operationId: OutputController_findByCampaign
+    parameters:
+    - name: campaignId
+      in: path
+      value: $steps.createCampaign.outputs.campaignId
+    outputs:
+      output: $response.body

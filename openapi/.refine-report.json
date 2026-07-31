@@ -1,0 +1,28 @@
+{
+  "provider": "navistone",
+  "sources": [
+    "navistone-api-info-api-openapi.yml",
+    "navistone-campaigns-api-openapi.yml",
+    "navistone-clients-api-openapi.yml",
+    "navistone-domains-api-openapi.yml",
+    "navistone-geo-targeting-api-openapi.yml",
+    "navistone-health-api-openapi.yml",
+    "navistone-output-api-openapi.yml",
+    "navistone-segments-api-openapi.yml"
+  ],
+  "outputs": [
+    "navistone-api-info-api-openapi.yml",
+    "navistone-campaigns-api-openapi.yml",
+    "navistone-clients-api-openapi.yml",
+    "navistone-domains-api-openapi.yml",
+    "navistone-geo-targeting-api-openapi.yml",
+    "navistone-health-api-openapi.yml",
+    "navistone-output-api-openapi.yml",
+    "navistone-segments-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

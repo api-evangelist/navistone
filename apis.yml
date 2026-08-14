@@ -34,7 +34,7 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-08-13'
 tags:
 - Company
 - Marketing
@@ -174,8 +174,20 @@ common:
 - type: Arazzo
   name: NaviStone campaign launch
   url: arazzo/navistone-campaign-launch.yml
+- type: ToolCrosswalk
+  url: mcp/navistone-tool-crosswalk.yml
+- type: Packages
+  url: packages/navistone-packages.yml
+- type: Plans
+  url: plans/navistone-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/navistone-rate-limits.yml
+- type: StatusPage
+  url: https://status.navistone.com
+- type: GitHubOrganization
+  url: https://github.com/navistone
 x-enrichment:
-  date: '2026-07-20'
+  date: '2026-08-13'
   status: enriched
-  artifacts_added: 1
+  artifacts_added: 5
   pass: local-v1

@@ -1,6 +1,6 @@
 generated: '2026-07-20'
 method: derived
-source: openapi/navistone-openapi-original.json
+source: openapi/_original/navistone-openapi-original.json
 format: plain
 notes: >-
   Derived from the OpenAPI 4xx/5xx responses of the NaviStone (Zazmic) Platform API.
@@ -13,38 +13,38 @@ problems:
   meaning: Request body or query parameters failed validation (e.g. invalid input,
     both zip and state supplied to geo-targeting).
   source_operations:
-  - openapi/navistone-openapi-original.json#CampaignsController_create
-  - openapi/navistone-openapi-original.json#ClientsController_create
-  - openapi/navistone-openapi-original.json#DomainsController_create
-  - openapi/navistone-openapi-original.json#SegmentsController_create
-  - openapi/navistone-openapi-original.json#GeoTargetingController_create
+  - openapi/_original/navistone-openapi-original.json#CampaignsController_create
+  - openapi/_original/navistone-openapi-original.json#ClientsController_create
+  - openapi/_original/navistone-openapi-original.json#DomainsController_create
+  - openapi/_original/navistone-openapi-original.json#SegmentsController_create
+  - openapi/_original/navistone-openapi-original.json#GeoTargetingController_create
 - status: 401
   title: Unauthorized - Invalid or missing API key
   meaning: The X-API-Key header is missing or invalid.
   remediation: Supply a valid X-API-Key request header.
   source_operations:
-  - openapi/navistone-openapi-original.json#CampaignsController_findAll
-  - openapi/navistone-openapi-original.json#ClientsController_findAll
-  - openapi/navistone-openapi-original.json#DomainsController_findAll
-  - openapi/navistone-openapi-original.json#SegmentsController_findAll
-  - openapi/navistone-openapi-original.json#OutputController_findAll
+  - openapi/_original/navistone-openapi-original.json#CampaignsController_findAll
+  - openapi/_original/navistone-openapi-original.json#ClientsController_findAll
+  - openapi/_original/navistone-openapi-original.json#DomainsController_findAll
+  - openapi/_original/navistone-openapi-original.json#SegmentsController_findAll
+  - openapi/_original/navistone-openapi-original.json#OutputController_findAll
 - status: 404
   title: Not Found - Resource does not exist
   meaning: The requested client, domain, campaign, segment, or output ID was not found.
   source_operations:
-  - openapi/navistone-openapi-original.json#ClientsController_findOne
-  - openapi/navistone-openapi-original.json#CampaignsController_findOne
-  - openapi/navistone-openapi-original.json#DomainsController_findOne
-  - openapi/navistone-openapi-original.json#SegmentsController_findOne
+  - openapi/_original/navistone-openapi-original.json#ClientsController_findOne
+  - openapi/_original/navistone-openapi-original.json#CampaignsController_findOne
+  - openapi/_original/navistone-openapi-original.json#DomainsController_findOne
+  - openapi/_original/navistone-openapi-original.json#SegmentsController_findOne
 - status: 500
   title: Internal server error
   meaning: An unexpected server-side error occurred.
   source_operations:
-  - openapi/navistone-openapi-original.json#ClientsController_create
-  - openapi/navistone-openapi-original.json#ClientsController_findAll
+  - openapi/_original/navistone-openapi-original.json#ClientsController_create
+  - openapi/_original/navistone-openapi-original.json#ClientsController_findAll
 - status: 503
   title: Service Unavailable - Health check not successful
   meaning: A dependency (database/redis) reported down on the health endpoints.
   source_operations:
-  - openapi/navistone-openapi-original.json#HealthController_check
-  - openapi/navistone-openapi-original.json#HealthController_readiness
+  - openapi/_original/navistone-openapi-original.json#HealthController_check
+  - openapi/_original/navistone-openapi-original.json#HealthController_readiness

@@ -1,0 +1,20 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.navistone.com/
+docs: https://www.navistone.com/get-started
+summary: >-
+  NaviStone publishes no pricing page and no plans of any kind. /pricing and /plans both
+  return HTTP 404 on the marketing site, the published sitemap.xml contains no pricing or
+  plans URL, and the only commercial entry point is the "Get Started" lead form, which
+  routes to sales. The platform API at docs.navistone.com documents no billing, plan,
+  subscription or entitlement resource. Engagement is enterprise/agency contract only —
+  an honest zero, not an unchecked field.
+plan_count: 0
+model: contact-sales
+currency: null
+plans: []
+evidence:
+- {url: 'https://www.navistone.com/pricing', status: 404}
+- {url: 'https://www.navistone.com/plans', status: 404}
+- {url: 'https://www.navistone.com/get-started', status: 200, note: lead-capture form, no prices shown}
+- {url: 'https://www.navistone.com/sitemap.xml', status: 200, note: no pricing or plans URL present}

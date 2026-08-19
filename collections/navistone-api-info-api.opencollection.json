@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zazmic Platform API Info API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "API Info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get API information and available endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api"
+          },
+          "docs": "Get API information and available endpoints"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

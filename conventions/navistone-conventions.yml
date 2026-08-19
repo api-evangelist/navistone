@@ -1,11 +1,43 @@
-generated: '2026-07-20'
-method: derived
-source: openapi/navistone-openapi-original.json
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://docs.navistone.com/openapi.json (probed 200, saved verbatim to
+  openapi/_original/navistone-openapi-original.json) and the docs.navistone.com Swagger UI,
+  which is the entire published developer surface — there is no prose reference to search.
 summary: >-
-  Cross-cutting request/response semantics for the NaviStone (Zazmic) Platform API,
-  derived from the published OpenAPI. REST/CRUD over JSON, API-key auth, offset
-  pagination on list endpoints. No idempotency-key contract and no rate-limit
-  signaling are documented.
+  Cross-cutting request/response semantics for the NaviStone platform API. REST/CRUD over
+  JSON under an /api prefix, X-API-Key auth, offset pagination on list endpoints, soft
+  deletes throughout. No idempotency contract, no rate-limit signaling, no request-id
+  tracing header, and — the finding that matters most to a caller — no addressable base
+  host in the published contract.
+contract_provenance:
+  fetched_from: https://docs.navistone.com/openapi.json
+  info_title: Zazmic Platform API
+  ownership_note: >-
+    The spec's info.title names Zazmic, the development vendor that built the platform, not
+    NaviStone. It is treated as NaviStone's contract because it is served from
+    docs.navistone.com — a host NaviStone controls — and because every resource it models is
+    NaviStone's own business: direct-mail campaigns keyed to Modern Postcard Creative IDs,
+    website domains that issue tracking access keys, audience segments, ZIP/state
+    geo-targeting and mail-output tracking. There is no counter-signal pointing at another
+    product owner: servers[] is empty, info.contact is empty, and there is no
+    termsOfService. The Swagger UI page title ("Zazmic API Docs (Swagger UI)") is
+    unmodified NestJS/Swagger scaffolding left in place by the vendor.
+base_url:
+  published: null
+  finding: >-
+    The OpenAPI declares no servers[] block, so the contract names no host. The Swagger UI
+    would resolve operations relative to docs.navistone.com, but that host is a static
+    Amazon S3 bucket behind CloudFront and returns 403 AccessDenied for /api/* — it cannot
+    be the runtime base. api.navistone.com resolves to a live Kong Gateway 3.3.1 that
+    answers "no Route matched with those values" for every path probed, including /api,
+    /api/health and /api/campaigns, so no route is publicly exposed there either. The real
+    base URL is therefore not discoverable from anything NaviStone publishes; apis.yml
+    baseURL is left at the documentation host rather than guessed.
+  probes:
+  - {url: 'https://docs.navistone.com/api/campaigns', status: 403, note: S3 AccessDenied}
+  - {url: 'https://api.navistone.com/api/campaigns', status: 404, note: Kong "no Route matched with those values"}
+  - {url: 'https://api.navistone.com/api/health', status: 404, note: Kong "no Route matched with those values"}
 authentication:
   style: api-key
   location: header
@@ -16,7 +48,10 @@ base_path:
   note: All resource paths are served under the /api prefix (e.g. /api/campaigns).
 idempotency:
   supported: false
-  note: The API documents no Idempotency-Key header or idempotent-retry contract.
+  note: >-
+    The API documents no Idempotency-Key header or idempotent-retry contract, and no
+    operation declares an idempotency parameter. No `Idempotency` pointer is emitted for
+    this provider. Retrying POST /api/campaigns or POST /api/clients will create duplicates.
 pagination:
   style: offset
   params:
@@ -28,17 +63,30 @@ pagination:
     minimum: 1
     maximum: 100
   applies_to:
-  - openapi/navistone-openapi-original.json#ClientsController_findAll
+  - openapi/_original/navistone-openapi-original.json#ClientsController_findAll
   filtering:
   - name
   - active
+  note: >-
+    Only the clients list declares pagination parameters; campaigns, domains, segments and
+    output list operations declare none, so their result-set size is unbounded and
+    undocumented.
+expansion:
+  supported: false
+  note: No field-expansion or sparse-fieldset parameters are declared.
 metadata:
   soft_delete: true
-  note: Deletes are soft (active=false) for clients/campaigns/domains/segments; a
-    force query flag exists on client delete for dependent records.
+  note: >-
+    Deletes are soft (active=false) for clients, campaigns, domains and segments; a force
+    query flag exists on client delete for dependent records. DELETE /api/output/{id} is
+    the one hard delete in the contract.
+request_tracing:
+  header: null
+  note: No request-id / correlation-id header is documented or declared in the spec.
 error_envelope:
   style: http-status + json body
   format: plain
+  shape: '{ statusCode, message, error } (NestJS default exception filter)'
   cross_ref: errors/navistone-problem-types.yml
 versioning:
   scheme: none-explicit
@@ -46,4 +94,7 @@ versioning:
   cross_ref: lifecycle/navistone-lifecycle.yml
 rate_limiting:
   signaled: false
-  note: No rate-limit headers or policy are documented.
+  note: >-
+    No rate-limit headers, no 429 response and no throttling policy are declared anywhere
+    in the contract or the docs.
+  cross_ref: rate-limits/navistone-rate-limits.yml

@@ -1,20 +1,52 @@
-generated: '2026-07-20'
-method: derived
-source: openapi/navistone-openapi-original.json
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://status.navistone.com/ (probed 200) plus openapi/_original/navistone-openapi-original.json
+  and 404 probes for a versioning/deprecation/SLA policy on www.navistone.com.
 versioning:
   scheme: none-explicit
   spec_version: 1.0.0
-  note: The OpenAPI declares version 1.0.0; paths are served under /api with no
-    version segment.
+  docs: null
+  note: >-
+    The OpenAPI declares version 1.0.0; paths are served under /api with no version
+    segment and no version header is documented. There is no published versioning policy.
 deprecation:
   policy_url: null
   sunset_header: false
-  note: No deprecation/Sunset policy is documented.
+  note: >-
+    No deprecation or Sunset/Deprecation (RFC 8594) policy is documented, and no operation
+    in the spec is marked deprecated. No `Deprecation` pointer is emitted.
 sla:
   url: null
-status_page: null
+  uptime_target: null
+  note: No SLA or uptime commitment is published.
+status_page: https://status.navistone.com
+status_page_detail:
+  url: https://status.navistone.com
+  title: NaviStone Status
+  platform: self-hosted (Laravel status page; Ubuntu/UIkit build)
+  http_status: 200
+  checked: '2026-08-13'
+  subscribe: true
+  subscribe_note: >-
+    Email subscription is offered ("submit your email and we will send you an unsubscribe
+    link"); an update-history view is linked.
+  incidents_recent: 'There are no updates in the last 7 days.'
+  components_note: >-
+    Monitor names render client-side and the page reported "There was an error while
+    fetching the data" at fetch time, so individual component names could not be captured;
+    the page itself is genuinely served and branded NaviStone.
 health_endpoints:
-- openapi/navistone-openapi-original.json#HealthController_check
-- openapi/navistone-openapi-original.json#HealthController_liveness
-- openapi/navistone-openapi-original.json#HealthController_readiness
+- openapi/_original/navistone-openapi-original.json#HealthController_check
+- openapi/_original/navistone-openapi-original.json#HealthController_liveness
+- openapi/_original/navistone-openapi-original.json#HealthController_readiness
 deprecated_operations: []
+changelog:
+  url: null
+  note: >-
+    No changelog or release-notes page exists. /changelog returns 404 and the published
+    sitemap.xml contains no changelog URL, so no changelog/ artifact is written.
+evidence:
+- {url: 'https://status.navistone.com/', status: 200}
+- {url: 'https://www.navistone.com/changelog', status: 404}
+- {url: 'https://www.navistone.com/status', status: 404}

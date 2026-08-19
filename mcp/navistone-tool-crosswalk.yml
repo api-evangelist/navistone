@@ -1,0 +1,83 @@
+generated: '2026-08-13'
+method: derived
+source: mcp/navistone-mcp.yml + openapi/_original/navistone-openapi-original.json
+summary: >-
+  Binds every candidate MCP tool to the OpenAPI operation that backs it. NaviStone ships no
+  MCP server (see deployment.mode: none in mcp/navistone-mcp.yml), so the tool side of this
+  crosswalk is a derived candidate surface, not a published one — every row is therefore a
+  1:1 name-to-operationId binding taken straight from the spec rather than an alignment of
+  two independent surfaces. Its value here is the inverse direction: it records that the
+  REST contract is the ONLY machine-readable surface, that nothing is MCP-only, and that
+  the three health/liveness/readiness probes are the only operations no agent tool should
+  wrap. Each tool's real input contract is its operation's parameters + requestBody in the
+  spec; all write operations take a `$ref` DTO (CreateCampaignDto, UpdateClientDto, …).
+surfaces:
+  openapi:
+    file: openapi/_original/navistone-openapi-original.json
+    published: https://docs.navistone.com/openapi.json
+    status: 200
+    operations: 36
+    gated: false
+    note: >-
+      The spec declares no servers[] and the docs host is a static S3 bucket, so the
+      operations are described but not addressable from the published contract alone.
+  graphql:
+    endpoint: null
+    note: No GraphQL surface found on any NaviStone host.
+  mcp:
+    url: null
+    gated: false
+    note: >-
+      No MCP endpoint exists. Probed mcp.navistone.com (no DNS), api.navistone.com/mcp
+      and /sse (Kong 404), agent.navistone.dev/mcp and /api/mcp (404). tools/list was
+      never reachable, so no inputSchema could be read from a live server.
+coverage:
+  tools_named: 33
+  tools_bound: 33
+  tools_unbound: 0
+  mcp_only: 0
+  rest_ops_total: 36
+  rest_ops_with_tool: 33
+  rest_only: 3
+crosswalk:
+- {tool: get_api_info, category: discovery, rest: [AppController_getApiInfo], binding: rest, confidence: high}
+- {tool: create_campaign, category: campaigns, rest: [CampaignsController_create], binding: rest, confidence: high, note: 'requestBody CreateCampaignDto; links a Modern Postcard Creative ID, no file upload'}
+- {tool: list_campaigns, category: campaigns, rest: [CampaignsController_findAll], binding: rest, confidence: high}
+- {tool: get_campaign, category: campaigns, rest: [CampaignsController_findOne], binding: rest, confidence: high}
+- {tool: update_campaign, category: campaigns, rest: [CampaignsController_update], binding: rest, confidence: high}
+- {tool: delete_campaign, category: campaigns, rest: [CampaignsController_remove], binding: rest, confidence: high, note: soft delete}
+- {tool: create_client, category: clients, rest: [ClientsController_create], binding: rest, confidence: high}
+- {tool: list_clients, category: clients, rest: [ClientsController_findAll], binding: rest, confidence: high, note: 'offset pagination — page/limit, plus name/active filters'}
+- {tool: get_client, category: clients, rest: [ClientsController_findOne], binding: rest, confidence: high}
+- {tool: update_client, category: clients, rest: [ClientsController_update], binding: rest, confidence: high}
+- {tool: delete_client, category: clients, rest: [ClientsController_remove], binding: rest, confidence: high, note: 'soft delete; force query flag cascades to dependents'}
+- {tool: create_domain, category: domains, rest: [DomainsController_create], binding: rest, confidence: high, note: issues the website access key}
+- {tool: list_domains, category: domains, rest: [DomainsController_findAll], binding: rest, confidence: high}
+- {tool: get_domain, category: domains, rest: [DomainsController_findOne], binding: rest, confidence: high}
+- {tool: update_domain, category: domains, rest: [DomainsController_update], binding: rest, confidence: high}
+- {tool: delete_domain, category: domains, rest: [DomainsController_remove], binding: rest, confidence: high, note: soft delete}
+- {tool: add_geo_targeting, category: geo-targeting, rest: [GeoTargetingController_create], binding: rest, confidence: high, note: 'CreateGeoTargetingDto; zip and state are mutually exclusive (400 when both supplied)'}
+- {tool: list_geo_targeting, category: geo-targeting, rest: [GeoTargetingController_list], binding: rest, confidence: high}
+- {tool: add_zip_targeting, category: geo-targeting, rest: [GeoTargetingController_addZip], binding: rest, confidence: high}
+- {tool: remove_zip_targeting, category: geo-targeting, rest: [GeoTargetingController_removeZip], binding: rest, confidence: high}
+- {tool: add_state_targeting, category: geo-targeting, rest: [GeoTargetingController_addState], binding: rest, confidence: high}
+- {tool: remove_state_targeting, category: geo-targeting, rest: [GeoTargetingController_removeState], binding: rest, confidence: high}
+- {tool: create_segment, category: segments, rest: [SegmentsController_create], binding: rest, confidence: high}
+- {tool: list_segments, category: segments, rest: [SegmentsController_findAll], binding: rest, confidence: high}
+- {tool: get_segment, category: segments, rest: [SegmentsController_findOne], binding: rest, confidence: high}
+- {tool: update_segment, category: segments, rest: [SegmentsController_update], binding: rest, confidence: high}
+- {tool: delete_segment, category: segments, rest: [SegmentsController_remove], binding: rest, confidence: high, note: soft delete}
+- {tool: create_output, category: output, rest: [OutputController_create], binding: rest, confidence: high}
+- {tool: list_output, category: output, rest: [OutputController_findAll], binding: rest, confidence: high}
+- {tool: get_output_by_campaign, category: output, rest: [OutputController_findByCampaign], binding: rest, confidence: high}
+- {tool: get_output, category: output, rest: [OutputController_findOne], binding: rest, confidence: high}
+- {tool: update_output, category: output, rest: [OutputController_update], binding: rest, confidence: high}
+- {tool: delete_output, category: output, rest: [OutputController_remove], binding: rest, confidence: high, note: hard delete — the only non-soft delete in the contract}
+mcp_only: []
+rest_only:
+- capability: health
+  operations: [HealthController_check, HealthController_liveness, HealthController_readiness]
+  reason: >-
+    Kubernetes-style liveness/readiness probes intended for the platform's own
+    orchestrator. They carry no security requirement and no business meaning, so they are
+    deliberately left out of the candidate agent tool surface.

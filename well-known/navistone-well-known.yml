@@ -1,0 +1,69 @@
+generated: '2026-08-13'
+method: probed
+source: live GET probes of every /.well-known/ discovery path on all NaviStone hosts
+summary: >-
+  No /.well-known/ discovery document is served on any NaviStone host. The marketing
+  site (HubSpot CMS) returns its 404 HTML page for every path, the documentation host
+  is a static S3/CloudFront bucket that returns an S3 AccessDenied XML body for any key
+  that does not exist, and api.navistone.com is a Kong 3.3.1 gateway that answers
+  "no Route matched with those values" for every path. A recorded absence — no
+  WellKnown or SecurityTxt pointer is emitted for this provider.
+hosts:
+- host: https://www.navistone.com
+  note: HubSpot-hosted marketing site; every miss returns the site 404 HTML page.
+  documents:
+  - {path: /.well-known/security.txt, status: 404, content_type: text/html}
+  - {path: /.well-known/openid-configuration, status: 404, content_type: text/html}
+  - {path: /.well-known/oauth-authorization-server, status: 404, content_type: text/html}
+  - {path: /.well-known/oauth-protected-resource, status: 404, content_type: text/html}
+  - {path: /.well-known/api-catalog, status: 404, content_type: text/html}
+  - {path: /.well-known/ai-plugin.json, status: 404, content_type: text/html}
+  - {path: /.well-known/agent-card.json, status: 404, content_type: text/html}
+  - {path: /.well-known/agent.json, status: 404, content_type: text/html}
+- host: https://navistone.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404, content_type: text/html}
+  - {path: /.well-known/openid-configuration, status: 404, content_type: text/html}
+  - {path: /.well-known/oauth-authorization-server, status: 404, content_type: text/html}
+  - {path: /.well-known/oauth-protected-resource, status: 404, content_type: text/html}
+  - {path: /.well-known/api-catalog, status: 404, content_type: text/html}
+  - {path: /.well-known/ai-plugin.json, status: 404, content_type: text/html}
+  - {path: /.well-known/agent-card.json, status: 404, content_type: text/html}
+  - {path: /.well-known/agent.json, status: 404, content_type: text/html}
+- host: https://docs.navistone.com
+  note: >-
+    Static Swagger UI on Amazon S3 behind CloudFront (server: AmazonS3). Any missing key
+    returns HTTP 403 with an S3 <Error><Code>AccessDenied</Code> XML body, which is a miss,
+    not a document.
+  documents:
+  - {path: /.well-known/security.txt, status: 403, content_type: application/xml}
+  - {path: /.well-known/openid-configuration, status: 403, content_type: application/xml}
+  - {path: /.well-known/oauth-authorization-server, status: 403, content_type: application/xml}
+  - {path: /.well-known/oauth-protected-resource, status: 403, content_type: application/xml}
+  - {path: /.well-known/api-catalog, status: 403, content_type: application/xml}
+  - {path: /.well-known/ai-plugin.json, status: 403, content_type: application/xml}
+  - {path: /.well-known/agent-card.json, status: 403, content_type: application/xml}
+  - {path: /.well-known/agent.json, status: 403, content_type: application/xml}
+- host: https://api.navistone.com
+  note: >-
+    Kong Gateway 3.3.1 (server header). Every path returns
+    {"message":"no Route matched with those values"} — the gateway is live but no route
+    is publicly exposed, so no discovery document can be served from it.
+  documents:
+  - {path: /.well-known/security.txt, status: 404, content_type: application/json}
+  - {path: /.well-known/openid-configuration, status: 404, content_type: application/json}
+  - {path: /.well-known/oauth-authorization-server, status: 404, content_type: application/json}
+  - {path: /.well-known/oauth-protected-resource, status: 404, content_type: application/json}
+  - {path: /.well-known/api-catalog, status: 404, content_type: application/json}
+  - {path: /.well-known/ai-plugin.json, status: 404, content_type: application/json}
+  - {path: /.well-known/agent-card.json, status: 404, content_type: application/json}
+  - {path: /.well-known/agent.json, status: 404, content_type: application/json}
+- host: https://agent.navistone.dev
+  note: >-
+    Next.js application ("NaviStone Analytics Agent"). Returns the app 404 HTML shell for
+    every /.well-known/ path; the only reachable API route observed is POST /api/chat.
+  documents:
+  - {path: /.well-known/agent-card.json, status: 404, content_type: text/html}
+  - {path: /.well-known/agent.json, status: 404, content_type: text/html}
+  - {path: /.well-known/oauth-protected-resource, status: 404, content_type: text/html}
+documents_found: 0

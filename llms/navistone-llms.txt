@@ -1,15 +1,24 @@
 # NaviStone
 
-> NaviStone is a direct-mail marketing technology company that turns first-party and "unknown" website audiences into addressable postcard campaigns for consumer brands. Its platform API manages clients, domains, audience segments, campaigns (linked to Modern Postcard creative), ZIP/state geo-targeting, and output tracking, secured with an X-API-Key header.
+> NaviStone is a direct-mail marketing technology company that turns first-party and "unknown" website audiences into addressable postcard campaigns for consumer brands. Its platform API manages clients, website domains, audience segments, campaigns (linked to Modern Postcard creative IDs), ZIP/state geo-targeting, and mail output tracking, secured with an X-API-Key header.
 
 ## APIs
 
-- [NaviStone Platform API (Swagger UI)](https://docs.navistone.com): Interactive API reference for the NaviStone (Zazmic) Platform API.
-- [OpenAPI (JSON)](https://docs.navistone.com/openapi.json): Machine-readable OpenAPI 3.0.0 definition.
+- [NaviStone Platform API (Swagger UI)](https://docs.navistone.com): The entire published developer surface — a static Swagger UI, no prose reference, no getting-started guide.
+- [OpenAPI (JSON)](https://docs.navistone.com/openapi.json): Machine-readable OpenAPI 3.0.0 definition, 36 operations across API Info, Campaigns, Clients, Domains, Geo Targeting, Health, Output and Segments.
+
+## Calling notes
+
+- Authentication is an `X-API-Key` request header on 33 of the 36 operations; the three `/api/health*` probes are unauthenticated.
+- The OpenAPI declares no `servers[]`, so the contract names no host. `docs.navistone.com` is a static S3 bucket (403 on `/api/*`) and `api.navistone.com` is a Kong gateway with no publicly exposed route, so the runtime base URL is not discoverable from anything NaviStone publishes. Obtain it with your API key from NaviStone.
+- No idempotency key, no rate-limit headers, no 429 response, no request-id header, and no versioning or deprecation policy are documented.
+- Errors are NestJS-shaped `{ statusCode, message, error }` JSON, not RFC 9457 problem details.
+- Deletes are soft (`active=false`) for clients, campaigns, domains and segments; `DELETE /api/output/{id}` is the one hard delete.
+- Only the clients list declares `page`/`limit` pagination; other list operations are unbounded.
 
 ## Specs
 
-- [OpenAPI original](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/openapi/navistone-openapi-original.json)
+- [OpenAPI original](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/openapi/_original/navistone-openapi-original.json)
 
 ## Artifacts
 
@@ -18,11 +27,34 @@
 - [Error catalog](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/errors/navistone-problem-types.yml)
 - [Data model](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/data-model/navistone-data-model.yml)
 - [Conformance](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/conformance/navistone-conformance.yml)
-- [MCP tool surface (candidate)](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/mcp/navistone-mcp.yml)
+- [Lifecycle](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/lifecycle/navistone-lifecycle.yml)
+- [Rate limits](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/rate-limits/navistone-rate-limits.yml)
+- [Plans and pricing](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/plans/navistone-plans-pricing.yml)
+- [Packages](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/packages/navistone-packages.yml)
+- [Well-known probe](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/well-known/navistone-well-known.yml)
+- [MCP tool surface (candidate — no server is published)](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/mcp/navistone-mcp.yml)
+- [MCP-to-REST tool crosswalk](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/mcp/navistone-tool-crosswalk.yml)
+- [Agentic access contracts](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/agentic-access/navistone-agentic-access.yml)
+- [Agent skills](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/skills/_index.yml)
+- [Domain security](https://raw.githubusercontent.com/api-evangelist/navistone/refs/heads/main/security/navistone-domain-security.yml)
+
+## Operations
+
+- [Status page](https://status.navistone.com): NaviStone Status — self-hosted, email subscription available.
 
 ## Docs
 
 - [NaviStone website](https://www.navistone.com)
+- [Platform overview](https://www.navistone.com/data-driven-marketing-platform)
+- [FAQ](https://www.navistone.com/faq)
 - [Blog](https://www.navistone.com/blog)
 - [Get started](https://www.navistone.com/get-started)
 - [Privacy policy](https://www.navistone.com/privacy-policy)
+- [Consumer privacy](https://info.navistone.com/consumer-privacy)
+- [GitHub organization](https://github.com/navistone)
+
+## Not published
+
+- No MCP server, no A2A agent card, no `/.well-known/` documents on any host (all probed 2026-08-13).
+- No client SDKs on npm, PyPI, RubyGems, crates.io or Packagist.
+- No pricing page, no plans, no terms of service, no changelog, no CLI, no sandbox, no webhooks or event surface, no OAuth scopes.

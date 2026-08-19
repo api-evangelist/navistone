@@ -1,0 +1,87 @@
+{
+  "item": [
+    {
+      "id": "84b78a39-3981-4027-aee4-a9ab8bd6358d",
+      "name": "API Info",
+      "description": {
+        "content": "API information and endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "28486e2c-1b38-4d0c-8cce-644ab70c4c6a",
+          "name": "Get API information and available endpoints",
+          "request": {
+            "name": "Get API information and available endpoints",
+            "description": {},
+            "url": {
+              "path": [
+                "api"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba978be5-4f18-45fc-ae62-018114d965e5",
+              "name": "API information returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ed3b3fe6-a553-4c0a-9fb2-b384499b900d",
+    "name": "Zazmic Platform API Info API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing clients, domains, campaigns, segments, and geo-targeting",
+      "type": "text/plain"
+    }
+  }
+}

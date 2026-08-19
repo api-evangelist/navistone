@@ -1,6 +1,8 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: derived
-source: openapi/navistone-openapi-original.json
+source: openapi/navistone-api-info-api-openapi.yml, openapi/navistone-campaigns-api-openapi.yml,
+  openapi/navistone-clients-api-openapi.yml, openapi/navistone-domains-api-openapi.yml, openapi/navistone-geo-targeting-api-openapi.yml,
+  openapi/navistone-health-api-openapi.yml, openapi/navistone-output-api-openapi.yml, openapi/navistone-segments-api-openapi.yml
 summary:
   types:
   - apiKey
@@ -13,4 +15,11 @@ schemes:
   parameter: X-API-Key
   description: API Key for authentication
   sources:
-  - openapi/navistone-openapi-original.json
+  - openapi/navistone-api-info-api-openapi.yml
+  - openapi/navistone-campaigns-api-openapi.yml
+  - openapi/navistone-clients-api-openapi.yml
+  - openapi/navistone-domains-api-openapi.yml
+  - openapi/navistone-geo-targeting-api-openapi.yml
+  - openapi/navistone-health-api-openapi.yml
+  - openapi/navistone-output-api-openapi.yml
+  - openapi/navistone-segments-api-openapi.yml

@@ -5,7 +5,7 @@ info:
   summary: Onboard a client, create a direct-mail campaign, add ZIP geo-targeting, and read output.
 sourceDescriptions:
 - name: navistone
-  url: ../openapi/navistone-openapi-original.json
+  url: ../openapi/_original/navistone-openapi-original.json
   type: openapi
 workflows:
 - workflowId: launchCampaign

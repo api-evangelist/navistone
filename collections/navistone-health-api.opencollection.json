@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zazmic Platform API Info Health API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Health check endpoint with database connectivity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/health"
+          },
+          "docs": "Health check endpoint with database connectivity"
+        },
+        {
+          "info": {
+            "name": "Liveness probe - checks if app is running",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/health/live"
+          },
+          "docs": "Liveness probe - checks if app is running"
+        },
+        {
+          "info": {
+            "name": "Readiness probe - checks if app is ready to serve traffic including database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/health/ready"
+          },
+          "docs": "Readiness probe - checks if app is ready to serve traffic including database"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,42 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  Registry searches against npm (registry.npmjs.org), PyPI, RubyGems, crates.io and
+  Packagist for "navistone", plus the github.com/navistone organization repo listing
+  and the docs.navistone.com Swagger UI (which links no client libraries).
+summary: >-
+  NaviStone publishes NO first-party client library for its platform API. The only
+  package on any public registry published from a navistone.com address is an internal
+  fork of the third-party Knex SQL query builder — infrastructure, not an API client —
+  last released 2019-07-24. The docs host is a bare Swagger UI with no SDK links, and
+  the github.com/navistone organization contains only forks/mirrors of open-source
+  infrastructure projects (Airflow, Kafka, Kubernetes, Prometheus, Terraform modules).
+  No `SDKs` pointer is emitted: sdk_count for this provider is genuinely 0.
+sdk_count: 0
+packages:
+- language: javascript
+  registry: npm
+  name: knex-navistone
+  url: https://www.npmjs.com/package/knex-navistone
+  install: npm install knex-navistone
+  official: true
+  sdk: false
+  version: 0.19.1-navistone
+  published: '2019-07-24'
+  last_registry_modification: '2022-05-07'
+  publisher: eng-navi <engineering@navistone.com>
+  upstream_repository: git://github.com/tgriesser/knex.git
+  note: >-
+    Published from a navistone.com engineering address, so it is first-party, but it is a
+    pinned fork of the open-source Knex query builder (a Postgres/MySQL/SQLite schema and
+    query builder) — it does not wrap the NaviStone platform API and is not an SDK. Last
+    published 2019-07-24, roughly six years before the platform OpenAPI now served at
+    docs.navistone.com (last modified 2025-12-01), so it carries no currency signal for
+    the API either.
+registries_checked:
+- {registry: npm, query: navistone, hits: 1, note: only knex-navistone}
+- {registry: pypi, query: navistone, status: 404}
+- {registry: rubygems, query: navistone, status: 404}
+- {registry: crates.io, query: navistone, hits: 0}
+- {registry: packagist, query: navistone, hits: 0, note: only unrelated navisborealis/* results}
+- {registry: github, query: 'org:navistone', hits: 11, note: all forks/mirrors of third-party OSS; no NaviStone client library}

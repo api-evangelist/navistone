@@ -1,10 +1,10 @@
 generated: '2026-07-20'
 method: generated
-source: openapi/navistone-openapi-original.json
+source: openapi/_original/navistone-openapi-original.json
 skills:
 - file: navistone-launch-campaign.md
   name: Launch a NaviStone direct-mail campaign
-  api: openapi/navistone-openapi-original.json
+  api: openapi/_original/navistone-openapi-original.json
   operations:
   - ClientsController_create
   - CampaignsController_create

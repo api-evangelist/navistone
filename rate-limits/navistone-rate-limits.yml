@@ -1,0 +1,21 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://docs.navistone.com/openapi.json (the published contract) plus the
+  docs.navistone.com Swagger UI and the navistone.com marketing site.
+summary: >-
+  NaviStone documents no rate limits. The published OpenAPI declares no 429 response on any
+  of its 36 operations, defines no rate-limit response headers, and carries no throttling
+  extension; the Swagger UI is the entire developer surface and has no accompanying prose
+  documentation. api.navistone.com fronts a Kong Gateway 3.3.1, which is the tier where
+  rate limiting would be enforced, but no route is publicly exposed there, so no runtime
+  RateLimit-* / X-RateLimit-* / Retry-After header could be observed on an unauthenticated
+  response. An agent calling this API has no published or observable rate-limit signal.
+limit_count: 0
+limits: []
+headers: []
+exhaustion_status: null
+evidence:
+- {url: 'https://docs.navistone.com/openapi.json', status: 200, note: 'no 429 responses, no rate-limit headers declared'}
+- {url: 'https://api.navistone.com/api', status: 404, note: 'Kong 3.3.1 — "no Route matched with those values"; no RateLimit headers on the response'}
+- {url: 'https://www.navistone.com/faq', status: 200, note: marketing FAQ; no API/technical limits documented}

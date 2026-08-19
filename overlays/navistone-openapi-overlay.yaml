@@ -1,18 +1,38 @@
 overlay: 1.0.0
 info:
-  title: API Evangelist enhancements for NaviStone (Zazmic) Platform API
-  version: 1.0.0
-extends: openapi/navistone-openapi-original.json
+  title: API Evangelist enhancements for the NaviStone Platform API
+  version: 1.1.0
+extends: openapi/_original/navistone-openapi-original.json
+x-generated: '2026-08-13'
+x-method: generated
+x-source: >-
+  Enhancements derived from the verbatim spec at https://docs.navistone.com/openapi.json
+  plus the 2026-08-13 host probes recorded in conventions/navistone-conventions.yml.
 actions:
 - target: $.info
   update:
     x-apievangelist-provider: navistone
     x-apievangelist-notes: >-
-      NaviStone direct-mail marketing platform API (implemented on the Zazmic
-      platform). Manages clients, domains, audience segments, campaigns tied to
-      Modern Postcard creative, ZIP/state geo-targeting, and output tracking.
-      Authenticated with an X-API-Key header.
-- target: $.servers
+      NaviStone direct-mail marketing platform API. Manages clients, website domains,
+      audience segments, campaigns tied to Modern Postcard creative IDs, ZIP/state
+      geo-targeting, and mail output tracking. Authenticated with an X-API-Key header.
+    x-apievangelist-title-provenance: >-
+      info.title reads "Zazmic Platform API" — the scaffold title left by Zazmic, the
+      development vendor that built the platform. The contract is served from
+      docs.navistone.com and every resource it models is NaviStone's own business, and it
+      carries no servers[], contact or termsOfService pointing at another product owner.
+    x-apievangelist-base-url-unresolved: >-
+      This spec declares no servers[] block, so it names no host. docs.navistone.com is a
+      static Amazon S3 bucket that returns 403 AccessDenied for /api/*, and
+      api.navistone.com is a Kong Gateway 3.3.1 that returns "no Route matched with those
+      values" for every path. No servers[] entry is added by this overlay, because
+      asserting a host that does not answer would be worse than recording the gap.
+- target: $.info.contact
   update:
-  - url: https://docs.navistone.com
-    description: Host serving the published OpenAPI / Swagger UI (API paths under /api).
+    name: NaviStone
+    url: https://www.navistone.com
+    email: info@navistone.com
+- target: $.externalDocs
+  update:
+    description: NaviStone Platform API Swagger UI
+    url: https://docs.navistone.com

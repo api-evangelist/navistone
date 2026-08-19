@@ -1,6 +1,6 @@
 generated: '2026-07-20'
 method: derived
-source: openapi/navistone-openapi-original.json
+source: openapi/_original/navistone-openapi-original.json
 entities:
 - name: Client
   description: An SMB client / advertiser account.

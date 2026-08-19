@@ -1,7 +1,7 @@
 ---
 name: Launch a NaviStone direct-mail campaign
 description: Onboard a client, create a campaign linked to a Modern Postcard creative, add ZIP/state geo-targeting, and read back output for the campaign.
-api: openapi/navistone-openapi-original.json
+api: openapi/_original/navistone-openapi-original.json
 operations:
 - ClientsController_create
 - CampaignsController_create

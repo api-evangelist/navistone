@@ -1,0 +1,196 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zazmic Platform API Info Geo Targeting API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geo Targeting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all geo targeting for campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/geo-targeting/campaigns/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "Campaign ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all geo targeting for campaign"
+        },
+        {
+          "info": {
+            "name": "Add geo targeting to campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/geo-targeting/campaigns/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "Campaign ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Add zip code or state-based targeting. Either zip OR state must be provided, not both. If zip is provided, optional radius in miles can be specified."
+        },
+        {
+          "info": {
+            "name": "Add ZIP code targeting to campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/geo-targeting/campaigns/:campaignId/zip/:zipCode",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "Campaign ID"
+              },
+              {
+                "name": "zipCode",
+                "value": "",
+                "type": "path",
+                "description": "5-digit ZIP code"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Quick endpoint to add a single ZIP code without radius"
+        },
+        {
+          "info": {
+            "name": "Remove ZIP code targeting from campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/geo-targeting/campaigns/:campaignId/zip/:zipCode",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "Campaign ID"
+              },
+              {
+                "name": "zipCode",
+                "value": "",
+                "type": "path",
+                "description": "5-digit ZIP code"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Remove ZIP code targeting from campaign"
+        },
+        {
+          "info": {
+            "name": "Add state targeting to campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/geo-targeting/campaigns/:campaignId/state/:stateCode",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "Campaign ID"
+              },
+              {
+                "name": "stateCode",
+                "value": "",
+                "type": "path",
+                "description": "State code (e.g., CA, NY)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Add state targeting to campaign"
+        },
+        {
+          "info": {
+            "name": "Remove state targeting from campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/geo-targeting/campaigns/:campaignId/state/:stateCode",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "Campaign ID"
+              },
+              {
+                "name": "stateCode",
+                "value": "",
+                "type": "path",
+                "description": "State code (e.g., CA, NY)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Remove state targeting from campaign"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

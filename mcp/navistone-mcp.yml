@@ -1,111 +1,131 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: derived
 status: candidate
-source: openapi/navistone-openapi-original.json
-notes: >-
-  Candidate MCP tool surface derived one-to-one from the NaviStone (Zazmic)
-  Platform API operations. No official hosted MCP server was found. Auth is an
-  X-API-Key header (see authentication/navistone-authentication.yml).
+source: openapi/_original/navistone-openapi-original.json
+notes: Candidate MCP tool surface derived one-to-one from the NaviStone (Zazmic) Platform API operations.
+  No official hosted MCP server was found. Auth is an X-API-Key header (see authentication/navistone-authentication.yml).
 server:
   name: navistone
   transport: http
 tools:
 - name: get_api_info
   description: Get API information and available endpoints
-  source_operation: openapi/navistone-openapi-original.json#AppController_getApiInfo
+  source_operation: openapi/_original/navistone-openapi-original.json#AppController_getApiInfo
 - name: create_campaign
   description: Create a new campaign linked to a Modern Postcard Creative ID
-  source_operation: openapi/navistone-openapi-original.json#CampaignsController_create
+  source_operation: openapi/_original/navistone-openapi-original.json#CampaignsController_create
 - name: list_campaigns
   description: Get all campaigns
-  source_operation: openapi/navistone-openapi-original.json#CampaignsController_findAll
+  source_operation: openapi/_original/navistone-openapi-original.json#CampaignsController_findAll
 - name: get_campaign
   description: Get a campaign by ID
-  source_operation: openapi/navistone-openapi-original.json#CampaignsController_findOne
+  source_operation: openapi/_original/navistone-openapi-original.json#CampaignsController_findOne
 - name: update_campaign
   description: Update a campaign
-  source_operation: openapi/navistone-openapi-original.json#CampaignsController_update
+  source_operation: openapi/_original/navistone-openapi-original.json#CampaignsController_update
 - name: delete_campaign
   description: Soft delete a campaign
-  source_operation: openapi/navistone-openapi-original.json#CampaignsController_remove
+  source_operation: openapi/_original/navistone-openapi-original.json#CampaignsController_remove
 - name: create_client
   description: Create a new SMB client account
-  source_operation: openapi/navistone-openapi-original.json#ClientsController_create
+  source_operation: openapi/_original/navistone-openapi-original.json#ClientsController_create
 - name: list_clients
   description: Get all clients (paginated, filterable)
-  source_operation: openapi/navistone-openapi-original.json#ClientsController_findAll
+  source_operation: openapi/_original/navistone-openapi-original.json#ClientsController_findAll
 - name: get_client
   description: Get client by ID
-  source_operation: openapi/navistone-openapi-original.json#ClientsController_findOne
+  source_operation: openapi/_original/navistone-openapi-original.json#ClientsController_findOne
 - name: update_client
   description: Update a client account
-  source_operation: openapi/navistone-openapi-original.json#ClientsController_update
+  source_operation: openapi/_original/navistone-openapi-original.json#ClientsController_update
 - name: delete_client
   description: Disable a client account (soft delete)
-  source_operation: openapi/navistone-openapi-original.json#ClientsController_remove
+  source_operation: openapi/_original/navistone-openapi-original.json#ClientsController_remove
 - name: create_domain
   description: Create a new domain with access key
-  source_operation: openapi/navistone-openapi-original.json#DomainsController_create
+  source_operation: openapi/_original/navistone-openapi-original.json#DomainsController_create
 - name: list_domains
   description: Get all domains
-  source_operation: openapi/navistone-openapi-original.json#DomainsController_findAll
+  source_operation: openapi/_original/navistone-openapi-original.json#DomainsController_findAll
 - name: get_domain
   description: Get a domain by ID
-  source_operation: openapi/navistone-openapi-original.json#DomainsController_findOne
+  source_operation: openapi/_original/navistone-openapi-original.json#DomainsController_findOne
 - name: update_domain
   description: Update a domain
-  source_operation: openapi/navistone-openapi-original.json#DomainsController_update
+  source_operation: openapi/_original/navistone-openapi-original.json#DomainsController_update
 - name: delete_domain
   description: Soft delete a domain
-  source_operation: openapi/navistone-openapi-original.json#DomainsController_remove
+  source_operation: openapi/_original/navistone-openapi-original.json#DomainsController_remove
 - name: add_geo_targeting
   description: Add zip- or state-based targeting to a campaign
-  source_operation: openapi/navistone-openapi-original.json#GeoTargetingController_create
+  source_operation: openapi/_original/navistone-openapi-original.json#GeoTargetingController_create
 - name: list_geo_targeting
   description: List all geo targeting for a campaign
-  source_operation: openapi/navistone-openapi-original.json#GeoTargetingController_list
+  source_operation: openapi/_original/navistone-openapi-original.json#GeoTargetingController_list
 - name: add_zip_targeting
   description: Add a single ZIP code targeting to a campaign
-  source_operation: openapi/navistone-openapi-original.json#GeoTargetingController_addZip
+  source_operation: openapi/_original/navistone-openapi-original.json#GeoTargetingController_addZip
 - name: remove_zip_targeting
   description: Remove ZIP code targeting from a campaign
-  source_operation: openapi/navistone-openapi-original.json#GeoTargetingController_removeZip
+  source_operation: openapi/_original/navistone-openapi-original.json#GeoTargetingController_removeZip
 - name: add_state_targeting
   description: Add state targeting to a campaign
-  source_operation: openapi/navistone-openapi-original.json#GeoTargetingController_addState
+  source_operation: openapi/_original/navistone-openapi-original.json#GeoTargetingController_addState
 - name: remove_state_targeting
   description: Remove state targeting from a campaign
-  source_operation: openapi/navistone-openapi-original.json#GeoTargetingController_removeState
+  source_operation: openapi/_original/navistone-openapi-original.json#GeoTargetingController_removeState
 - name: create_segment
   description: Create a new audience segment
-  source_operation: openapi/navistone-openapi-original.json#SegmentsController_create
+  source_operation: openapi/_original/navistone-openapi-original.json#SegmentsController_create
 - name: list_segments
   description: Get all segments
-  source_operation: openapi/navistone-openapi-original.json#SegmentsController_findAll
+  source_operation: openapi/_original/navistone-openapi-original.json#SegmentsController_findAll
 - name: get_segment
   description: Get a segment by ID
-  source_operation: openapi/navistone-openapi-original.json#SegmentsController_findOne
+  source_operation: openapi/_original/navistone-openapi-original.json#SegmentsController_findOne
 - name: update_segment
   description: Update a segment
-  source_operation: openapi/navistone-openapi-original.json#SegmentsController_update
+  source_operation: openapi/_original/navistone-openapi-original.json#SegmentsController_update
 - name: delete_segment
   description: Soft delete a segment
-  source_operation: openapi/navistone-openapi-original.json#SegmentsController_remove
+  source_operation: openapi/_original/navistone-openapi-original.json#SegmentsController_remove
 - name: create_output
   description: Create an output record
-  source_operation: openapi/navistone-openapi-original.json#OutputController_create
+  source_operation: openapi/_original/navistone-openapi-original.json#OutputController_create
 - name: list_output
   description: Get all output records
-  source_operation: openapi/navistone-openapi-original.json#OutputController_findAll
+  source_operation: openapi/_original/navistone-openapi-original.json#OutputController_findAll
 - name: get_output_by_campaign
   description: Get output records by campaign ID
-  source_operation: openapi/navistone-openapi-original.json#OutputController_findByCampaign
+  source_operation: openapi/_original/navistone-openapi-original.json#OutputController_findByCampaign
 - name: get_output
   description: Get an output record by ID
-  source_operation: openapi/navistone-openapi-original.json#OutputController_findOne
+  source_operation: openapi/_original/navistone-openapi-original.json#OutputController_findOne
 - name: update_output
   description: Update an output record
-  source_operation: openapi/navistone-openapi-original.json#OutputController_update
+  source_operation: openapi/_original/navistone-openapi-original.json#OutputController_update
 - name: delete_output
   description: Delete an output record
-  source_operation: openapi/navistone-openapi-original.json#OutputController_remove
+  source_operation: openapi/_original/navistone-openapi-original.json#OutputController_remove
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: api-key
+  verified: probed
+  tools: 33
+  checked: '2026-08-13'
+  source: >-
+    Probed for a hosted server at mcp.navistone.com (DNS does not resolve),
+    https://api.navistone.com/mcp and /sse (Kong 3.3.1 — "no Route matched with those
+    values"), and https://agent.navistone.dev/mcp, /api/mcp and /sse (HTTP 404 from the
+    Next.js app). Searched npm for a NaviStone MCP package — none exists. Nobody ships an
+    MCP server for this API; the tool list below is a candidate derived from the OpenAPI.
+  note: >-
+    mode is `none` because no server exists to install or call. Auth is recorded as
+    api-key because that is what the underlying API requires (X-API-Key header) — it is
+    not a claim that an MCP server is deployed. The nearest live agent surface NaviStone
+    operates is https://agent.navistone.dev, a Next.js "NaviStone Analytics Agent" chat
+    prototype with an undocumented POST /api/chat route; it exposes no MCP transport, no
+    tools/list, and no schemas.

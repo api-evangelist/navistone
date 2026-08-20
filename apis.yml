@@ -93,6 +93,8 @@ apis:
   humanURL: https://docs.navistone.com
   baseURL: https://docs.navistone.com
   tags:
+  - Geo-Targeting
+  tags_raw:
   - Geo Targeting
   properties:
   - type: OpenAPI

@@ -1,6 +1,6 @@
-generated: '2026-07-20'
-method: derived
-source: openapi/_original/navistone-openapi-original.json
+x-generated: '2026-07-20'
+x-method: derived
+x-source: openapi/_original/navistone-openapi-original.json
 workflows:
 - file: navistone-campaign-launch.yml
   workflowId: launchCampaign

@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Zazmic Platform API Info Clients API
+  title: Zazmic Platform Clients API
   description: API for managing clients, domains, campaigns, segments, and geo-targeting
   version: 1.0.0
   contact: {}
@@ -187,6 +187,24 @@ paths:
       - api-key: []
 components:
   schemas:
+    UpdateClientDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Client/company name
+          example: Acme Corporation
+          maxLength: 255
+        email:
+          type: string
+          description: Contact email address
+          example: contact@acme.com
+          maxLength: 255
+        lookupKey:
+          type: string
+          description: Lookup key for client identification
+          example: acme-corp
+          maxLength: 255
     ClientResponseDto:
       type: object
       properties:
@@ -199,25 +217,28 @@ components:
           description: Client/company name
           example: Acme Corporation
         email:
-          type: object
+          type:
+          - object
+          - 'null'
           description: Contact email address
           example: contact@acme.com
-          nullable: true
         lookupKey:
-          type: object
+          type:
+          - object
+          - 'null'
           description: Lookup key for external integrations
           example: acme-corp
-          nullable: true
         createdAt:
           format: date-time
           type: string
           description: Creation timestamp
           example: '2025-01-01T00:00:00.000Z'
         updatedAt:
-          type: object
+          type:
+          - object
+          - 'null'
           description: Last update timestamp
           example: '2025-01-15T10:30:00.000Z'
-          nullable: true
       required:
       - id
       - name
@@ -245,24 +266,6 @@ components:
           maxLength: 255
       required:
       - name
-    UpdateClientDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Client/company name
-          example: Acme Corporation
-          maxLength: 255
-        email:
-          type: string
-          description: Contact email address
-          example: contact@acme.com
-          maxLength: 255
-        lookupKey:
-          type: string
-          description: Lookup key for client identification
-          example: acme-corp
-          maxLength: 255
   securitySchemes:
     api-key:
       type: apiKey

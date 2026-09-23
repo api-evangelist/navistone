@@ -109,23 +109,7 @@ tools:
   source_operation: openapi/_original/navistone-openapi-original.json#OutputController_remove
 deployment:
   mode: none
-  endpoint: null
-  install: null
-  package: null
-  auth: api-key
-  verified: probed
+  verified: derived
   tools: 33
-  checked: '2026-08-13'
-  source: >-
-    Probed for a hosted server at mcp.navistone.com (DNS does not resolve),
-    https://api.navistone.com/mcp and /sse (Kong 3.3.1 — "no Route matched with those
-    values"), and https://agent.navistone.dev/mcp, /api/mcp and /sse (HTTP 404 from the
-    Next.js app). Searched npm for a NaviStone MCP package — none exists. Nobody ships an
-    MCP server for this API; the tool list below is a candidate derived from the OpenAPI.
-  note: >-
-    mode is `none` because no server exists to install or call. Auth is recorded as
-    api-key because that is what the underlying API requires (X-API-Key header) — it is
-    not a claim that an MCP server is deployed. The nearest live agent surface NaviStone
-    operates is https://agent.navistone.dev, a Next.js "NaviStone Analytics Agent" chat
-    prototype with an undocumented POST /api/chat route; it exposes no MCP transport, no
-    tools/list, and no schemas.
+  checked: '2026-08-12'
+  source: catalog MCP census

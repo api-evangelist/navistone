@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Zazmic Platform API Info Segments API
+  title: Zazmic Platform Segments API
   description: API for managing clients, domains, campaigns, segments, and geo-targeting
   version: 1.0.0
   contact: {}

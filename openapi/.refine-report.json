@@ -1,14 +1,7 @@
 {
   "provider": "navistone",
   "sources": [
-    "navistone-api-info-api-openapi.yml",
-    "navistone-campaigns-api-openapi.yml",
-    "navistone-clients-api-openapi.yml",
-    "navistone-domains-api-openapi.yml",
-    "navistone-geo-targeting-api-openapi.yml",
-    "navistone-health-api-openapi.yml",
-    "navistone-output-api-openapi.yml",
-    "navistone-segments-api-openapi.yml"
+    "_original/navistone-openapi-original.json"
   ],
   "outputs": [
     "navistone-api-info-api-openapi.yml",
@@ -23,6 +16,19 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "navistone-openapi-original.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "navistone-api-info-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "navistone-campaigns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "navistone-clients-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "navistone-domains-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "navistone-geo-targeting-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "navistone-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "navistone-output-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "navistone-segments-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

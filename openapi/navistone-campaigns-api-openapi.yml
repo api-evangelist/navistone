@@ -122,21 +122,6 @@ paths:
       - api-key: []
 components:
   schemas:
-    UpdateCampaignDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Campaign name
-          example: Summer Sale 2025
-        clientId:
-          type: string
-          description: Client ID
-          example: 123e4567-e89b-12d3-a456-426614174000
-        creativeId:
-          type: string
-          description: Modern Postcard Creative ID (NO file uploads!)
-          example: MP-12345
     CreateCampaignDto:
       type: object
       properties:
@@ -155,6 +140,21 @@ components:
       required:
       - name
       - clientId
+    UpdateCampaignDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Campaign name
+          example: Summer Sale 2025
+        clientId:
+          type: string
+          description: Client ID
+          example: 123e4567-e89b-12d3-a456-426614174000
+        creativeId:
+          type: string
+          description: Modern Postcard Creative ID (NO file uploads!)
+          example: MP-12345
   securitySchemes:
     api-key:
       type: apiKey

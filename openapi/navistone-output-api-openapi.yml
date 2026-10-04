@@ -122,27 +122,6 @@ paths:
       - api-key: []
 components:
   schemas:
-    UpdateOutputDto:
-      type: object
-      properties:
-        campaignId:
-          type: string
-          description: Campaign ID
-        productTypeId:
-          type: number
-          description: Product type ID
-        dateStamp:
-          type: string
-          description: Date stamp
-        total:
-          type: number
-          description: Total output
-        monthly:
-          type: number
-          description: Monthly output
-        dailyAvg:
-          type: number
-          description: Daily average
     CreateOutputDto:
       type: object
       properties:
@@ -171,6 +150,27 @@ components:
       - total
       - monthly
       - dailyAvg
+    UpdateOutputDto:
+      type: object
+      properties:
+        campaignId:
+          type: string
+          description: Campaign ID
+        productTypeId:
+          type: number
+          description: Product type ID
+        dateStamp:
+          type: string
+          description: Date stamp
+        total:
+          type: number
+          description: Total output
+        monthly:
+          type: number
+          description: Monthly output
+        dailyAvg:
+          type: number
+          description: Daily average
   securitySchemes:
     api-key:
       type: apiKey

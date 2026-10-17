@@ -187,24 +187,6 @@ paths:
       - api-key: []
 components:
   schemas:
-    UpdateClientDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Client/company name
-          example: Acme Corporation
-          maxLength: 255
-        email:
-          type: string
-          description: Contact email address
-          example: contact@acme.com
-          maxLength: 255
-        lookupKey:
-          type: string
-          description: Lookup key for client identification
-          example: acme-corp
-          maxLength: 255
     ClientResponseDto:
       type: object
       properties:
@@ -266,6 +248,24 @@ components:
           maxLength: 255
       required:
       - name
+    UpdateClientDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Client/company name
+          example: Acme Corporation
+          maxLength: 255
+        email:
+          type: string
+          description: Contact email address
+          example: contact@acme.com
+          maxLength: 255
+        lookupKey:
+          type: string
+          description: Lookup key for client identification
+          example: acme-corp
+          maxLength: 255
   securitySchemes:
     api-key:
       type: apiKey

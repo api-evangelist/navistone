@@ -64,6 +64,147 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-NaviStone is a company surfaced as a portfolio company of bullpen-capital and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+NaviStone is a direct-mail marketing technology company that turns first-party and "unknown" website audiences into addressable postcard campaigns for consumer brands. Its platform helps businesses prospect (lookalike audiences), retain (mailing customers who opt out of digital channels), and retarget (postcards that amplify campaign performance), claiming up to a 70% increase in return on marketing spend. NaviStone's platform API (implemented on the Zazmic platform and published at docs.navistone.com) manages clients, website domains, audience segments, campaigns tied to Modern Postcard creative IDs, ZIP-code and state geo-targeting, and output tracking, all secured with an X-API-Key header. NaviStone is backed by Bullpen Capital and works with brands including Sleep Number, Vitamix, and Hey Dude across retail, travel, beauty, apparel, and home services.
 
-Backed by: bullpen-capital — https://www.navistone.com
+**Areas:** Company · Marketing · Direct Mail · Advertising · Customer Acquisition · Audience Targeting · MarTech · AdTech · Postcards · Retargeting
+
+## NaviStone on APIs.io
+
+Everything profiled for NaviStone is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/navistone/](https://apis.io/providers/navistone/)** — or go straight to one of the APIs or properties below.
+
+### APIs (8)
+
+- [NaviStone API Info API](https://apis.io/apis/navistone/navistone-api-info-api/) — API information and endpoints
+- [NaviStone Campaigns API](https://apis.io/apis/navistone/navistone-campaigns-api/) — Campaign management
+- [NaviStone Clients API](https://apis.io/apis/navistone/navistone-clients-api/) — Client management
+- [NaviStone Domains API](https://apis.io/apis/navistone/navistone-domains-api/) — Domain management
+- [NaviStone Geo Targeting API](https://apis.io/apis/navistone/navistone-geo-targeting-api/) — Geographic targeting
+- [NaviStone Health API](https://apis.io/apis/navistone/navistone-health-api/) — Health checks
+- [NaviStone Output API](https://apis.io/apis/navistone/navistone-output-api/) — Output tracking
+- [NaviStone Segments API](https://apis.io/apis/navistone/navistone-segments-api/) — Audience segments
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Arazzo workflows (1)
+
+Multi-step workflows that chain operations into a business task.
+
+- [NaviStone campaign launch](https://apis.io/arazzos/navistone/navistone-campaign-launch/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [navistone](https://apis.io/servers/navistone/navistone/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Navistone Agentic Access](https://apis.io/agentic-access/navistone/navistone-agentic-access/)
+
+#### Collections (8)
+
+Postman and Open Collection request collections.
+
+- [Zazmic Platform API Info API](https://apis.io/collections/navistone/open-navistone-api-info-api/)
+- [Zazmic Platform API Info Campaigns API](https://apis.io/collections/navistone/open-navistone-campaigns-api/)
+- [Zazmic Platform API Info Clients API](https://apis.io/collections/navistone/open-navistone-clients-api/)
+- [Zazmic Platform API Info Domains API](https://apis.io/collections/navistone/open-navistone-domains-api/)
+- [Zazmic Platform API Info Geo Targeting API](https://apis.io/collections/navistone/open-navistone-geo-targeting-api/)
+- [Zazmic Platform API Info Health API](https://apis.io/collections/navistone/open-navistone-health-api/)
+- [Zazmic Platform API Info Output API](https://apis.io/collections/navistone/open-navistone-output-api/)
+- [Zazmic Platform API Info Segments API](https://apis.io/collections/navistone/open-navistone-segments-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Navistone Openapi Overlay](https://apis.io/overlays/navistone/navistone-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Navistone Authentication](https://apis.io/security/navistone/navistone-authentication/)
+- [Navistone Domain Security](https://apis.io/security/navistone/navistone-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Navistone Plans Pricing](https://apis.io/plans/navistone/navistone-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Navistone Rate Limits](https://apis.io/rate-limits/navistone/navistone-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.navistone.com)
+- [Documentation](https://docs.navistone.com)
+- [API reference](https://docs.navistone.com)
+- [Sign up](https://www.navistone.com/get-started)
+- [Blog](https://www.navistone.com/blog)
+- [Privacy policy](https://www.navistone.com/privacy-policy)
+- [GitHub](https://github.com/navistone)
+- [Status](https://status.navistone.com)
+
+## API Evangelist rating
+
+**Kin Score 35.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 41.9 |
+| Contract governance | 18.2 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 42.3 |
+| Access clarity | 23.7 |
+
+**Agent readiness 23.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 20.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/navistone/](https://apis.io/providers/navistone/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for NaviStone: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/navistone/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
